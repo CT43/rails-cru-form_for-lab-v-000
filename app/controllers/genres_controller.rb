@@ -1,30 +1,30 @@
-class ArtistsController < ApplicationController
+class GenresController < ApplicationController
 	def index
-		@artists = Artist.all
+		@genres = Genre.all
 	end
 
 	def show
-		@artist = Artist.find(params[:id])
+		@genre = Genre.find(params[:id])
 	end
 
 	def new
-		@artist = Artist.new
+		@genre = Genre.new
 	end
 
 	def create
-	  @artist = Artist.new(post_params(:name, :bio))
-	  @artist.save
-	  redirect_to artist_path(@artist)
+	  @genre = Genre.new(post_params(:name))
+	  @genre.save
+	  redirect_to artist_path(@genre)
 	end
 
 	def edit
-		@artist = Artist.find(params[:id])
+		@genre = Genre.find(params[:id])
 	end
 
 	def update
-	  @artist = Artist.find(params[:id])
-	  @artist.update(post_params(:name, :bio))
-	  redirect_to artist_path(@artist)
+	  @genre = Genre.find(params[:id])
+	  @genre.update(post_params(:name, :bio))
+	  redirect_to artist_path(@genre)
 	end
 
 	private
@@ -35,6 +35,6 @@ class ArtistsController < ApplicationController
 	# still allowing slightly different behavior
 	# depending on the controller action
 	def post_params(*args)
-	  params.require(:artist).permit(*args)
+	  params.require(:genre).permit(*args)
 	end
 end
